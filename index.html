@@ -144,8 +144,18 @@
         /* --- Members Section --- */
         .member-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* 画面が広いときは2列、狭いときは1列にする設定 */
+            grid-template-columns: repeat(2, 1fr); 
             gap: 40px;
+            max-width: 900px; /* カードが広がりすぎないように幅を制限 */
+            margin: 0 auto;   /* 全体を中央に寄せる */
+        }
+
+        /* スマホなど画面が狭いときは1列にする（追加しておくと安心です） */
+        @media (max-width: 600px) {
+            .member-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .member-card {

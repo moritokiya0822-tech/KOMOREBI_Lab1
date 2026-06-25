@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOMOREBILab | Portfolio Hub</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS Reset & Variables --- */
+        :root {
+            --primary-color: #2d5a27; /* 深い森の緑 */
+            --accent-color: #81c784;  /* 若葉の緑 */
+            --bg-light: #f9fbf9;      /* 清潔感のある白 */
+            --text-main: #333333;
+            --text-sub: #666666;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Montserrat', sans-serif;
+            line-height: 1.8;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* --- Header --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        header.scrolled {
+            padding: 10px 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+        }
+
+        nav ul { display: flex; gap: 30px; }
+        nav ul li a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition);
+        }
+        nav ul li a:hover::after { width: 100%; }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #e8f5e9 100%);
+            padding: 0 5%;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-sub);
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s 0.3s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Common Section Style --- */
+        section { padding: 100px 10%; }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        /* --- Members Section --- */
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .member-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: var(--transition);
+            border: 1px solid #eee;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+        }
+
+        .member-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        .role {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .member-details {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            margin-bottom: 20px;
+        }
+        .member-pr {
+            font-size: 0.95rem;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 20px;
+        }
+
+        /* --- Portfolio Section --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .work-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            aspect-ratio: 4/3;
+            background: #ddd;
+        }
+
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .work-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(45, 90, 39, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .work-item:hover .work-overlay { opacity: 1; }
+        .work-item:hover img { transform: scale(1.1); }
+
+        /* --- Contact Section --- */
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: 500; }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        button:hover { background: var(--accent-color); }
+
+        .sns-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        .sns-links a:hover { color: var(--accent-color); }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #fff;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            nav { display: none; } /* 本来はハンバーガーメニューにするが今回はシンプル化 */
+            section { padding: 60px 5%; }
+            .hero-content h1 { font-size: 2.5rem; }
+        }
+
+        /* Scroll Animation Class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="logo">KOMOREBILab</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#members">Members</a></li>
+                <li><a href="#portfolio">Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Light, Design,<br>and Future.</h1>
+                <p>私たちは、木漏れ日のように心地よいデジタル体験をデザインするクリエイティブチームです。</p>
+                <a href="#portfolio" style="color: var(--primary-color); font-weight: 700; border-bottom: 2px solid;">View Our Works →</a>
+            </div>
+        </section>
+
+        <!-- Members Section -->
+        <section id="members" class="reveal">
+            <div class="section-title">
+                <h2>Our Members</h2>
+            </div>
+            <div class="member-grid">
+                <!-- Member 1 -->
+                <div class="member-card">
+                    <div class="member-info">
+                        <h3>Tokiya Mori</h3>
+                        <span class="role">UI/UX Designer / Director</span>
+                        <div class="member-details">
+                            <p><i class="far fa-calendar-alt"></i> 2007.05.31</p>
+                            <p>人とのコミュニケーションが得意なリーダー。ゲーム制作,アプリシステム開発からWebサイト制作まで幅広い分野に対応できます。</p>
+                        </div>
+                        <div class="member-pr">
+                            <strong>Strength:</strong> 徹底したヒアリング力と、ブランドの世界観を可視化するコンセプト設計力。
+                        </div>
+                    </div>
+                </div> <!-- ←ここが1人目の終わり -->
+
+                <!-- Member 2 -->
+                <div class="member-card">    
+                    <div class="member-info">
+                        <h3>Yugo Nakahama</h3>
+                        <span class="role">Frontend Developer</span>
+                        <div class="member-details">
+                            <p><i class="far fa-calendar-alt"></i> 2007.05.31</p>
+                            <p>エクセルを得意とする分析系プログラマー。ユーザーの無意識の行動を分析し、ストレスのないUI設計を得意としています。</p>
+                        </div>
+                        <div class="member-pr">
+                            <strong>Strength:</strong> 競技プログラミングで鍛えた圧倒的な技術力。
+                        </div>
+                    </div>
+                </div> <!-- ←ここが2人目の終わり -->
+
+                <!-- Member 3 -->
+                <div class="member-card">
+                    <div class="member-info">
+                        <h3>Kobayasi Wakana</h3>
+                        <span class="role">UI/UX Designer / Director</span>
+                        <div class="member-details">
+                            <p><i class="far fa-calendar-alt"></i> 2007.05.31</p>
+                            <p>ジャンルの域を超えたデザインを得意とするアートディレクター。ゲーム素材から似顔絵まで何でも書けます</p>
+                        </div>
+                        <div class="member-pr">
+                            <strong>Strength:</strong> パフォーマンスを犠牲にしないリッチな表現力
+                        </div>
+                    </div>
+                </div> <!-- ←ここが3人目の終わり -->
+
+                <!-- Member 4 -->
+                <div class="member-card">
+                    <div class="member-info">
+                        <h3>Mikuru Kusakari</h3>
+                        <span class="role">UI/UX Designer / Director</span>
+                        <div class="member-details">
+                            <p><i class="far fa-calendar-alt"></i> 2007.05.31</p>
+                            <p>人間を描くのを得意とするデザイナー。ゲーム素材の制作を得意としています。</p>
+                        </div>
+                        <div class="member-pr">
+                            <strong>Strength:</strong> 可愛いイラストが大好き。幅広い年代に受ける表現力。
+                        </div>
+                    </div>
+                </div> <!-- ←ここが4人目の終わり -->
+
+            </div> <!-- member-grid の終わり -->
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="reveal">
+            <div class="section-title">
+                <h2>Works</h2>
+            </div>
+            <div class="portfolio-grid">
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Work 1">
+                    <div class="work-overlay">
+                        <h3>Eco-Friendly E-commerce</h3>
+                        <p>自然素材に特化したECサイトの制作</p>
+                    </div>
+                </div>
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Work 2">
+                    <div class="work-overlay">
+                        <h3>Tech Startup Branding</h3>
+                        <p>ITスタートアップの企業サイト及びロゴデザイン</p>
+                    </div>
+                </div>
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Work 3">
+                    <div class="work-overlay">
+                        <h3>Minimal Architecture</h3>
+                        <p>建築事務所のポートフォリオサイト</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="reveal">
+            <div class="section-title">
+                <h2>Contact</h2>
+            </div>
+            <div class="contact-container">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" placeholder="お名前" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="メールアドレス" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="5" placeholder="お問い合わせ内容"></textarea>
+                    </div>
+                    <button type="submit">送信する</button>
+                </form>
+
+                <div class="sns-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 KOMOREBILab Portfolio Collection. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // --- Header Scroll Effect ---
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // --- Smooth Scroll ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // --- Reveal on Scroll Animation ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // --- Form Submission Simulation ---
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('お問い合わせありがとうございます！(これはデモ送信です)');
+        });
+    </script>
+</body>
+</html>

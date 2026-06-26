@@ -144,14 +144,12 @@
         /* --- Members Section --- */
         .member-grid {
             display: grid;
-            /* 常に2列にする設定（PC・タブレット） */
             grid-template-columns: repeat(2, 1fr); 
             gap: 40px;
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        /* スマホなど画面が極端に狭いときは1列にする */
         @media (max-width: 700px) {
             .member-grid {
                 grid-template-columns: 1fr;
@@ -287,14 +285,12 @@
             color: var(--text-sub);
         }
 
-        /* --- Mobile Responsive --- */
         @media (max-width: 768px) {
             nav { display: none; }
             section { padding: 60px 5%; }
             .hero-content h1 { font-size: 2.5rem; }
         }
 
-        /* Scroll Animation Class */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -314,7 +310,8 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#members">Members</a></li>
-                <li><a href="#portfolio">Works</a></li>
+                <!-- 1. メニューをPortfoliosに変更 -->
+                <li><a href="#portfolio">Portfolios</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -326,7 +323,7 @@
             <div class="hero-content">
                 <h1>Light, Design,<br>and Future.</h1>
                 <p>私たちは、木漏れ日のように心地よいデジタル体験をデザインするクリエイティブチームです。</p>
-                <a href="#portfolio" style="color: var(--primary-color); font-weight: 700; border-bottom: 2px solid;">View Our Works →</a>
+                <a href="#portfolio" style="color: var(--primary-color); font-weight: 700; border-bottom: 2px solid;">View Our Portfolios →</a>
             </div>
         </section>
 
@@ -398,113 +395,37 @@
             </div>
         </section>
 
-        <!-- Portfolio Section -->
+        <!-- Portfolios Section -->
         <section id="portfolio" class="reveal">
             <div class="section-title">
-                <h2>Works</h2>
+                <!-- 2. タイトルをPortfoliosに変更 -->
+                <h2>Portfolios</h2>
             </div>
             <div class="portfolio-grid">
+                <!-- 3. 画像の差し替え（img src="..." を書き換えてください） -->
                 <div class="work-item">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Work 1">
+                    <!-- GitHubにアップロードした画像を使う場合は img src="work1.jpg" のように記述します -->
+                    <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=600&q=80" alt="Work 1">
                     <div class="work-overlay">
-                        <h3>Eco-Friendly E-commerce</h3>
-                        <p>自然素材に特化したECサイトの制作</p>
+                        <h3>Web Design Project</h3>
+                        <p>コーポレートサイトのリニューアル</p>
                     </div>
                 </div>
                 <div class="work-item">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Work 2">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Work 2">
                     <div class="work-overlay">
-                        <h3>Tech Startup Branding</h3>
-                        <p>ITスタートアップの企業サイト及びロゴデザイン</p>
+                        <h3>App Development</h3>
+                        <p>教育系アプリケーションのUI/UX設計</p>
                     </div>
                 </div>
                 <div class="work-item">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Work 3">
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="Work 3">
                     <div class="work-overlay">
-                        <h3>Minimal Architecture</h3>
-                        <p>建築事務所のポートフォリオサイト</p>
+                        <h3>Branding Design</h3>
+                        <p>ロゴデザインおよびブランドガイドラインの作成</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="reveal">
-            <div class="section-title">
-                <h2>Contact</h2>
-            </div>
-            <div class="contact-container">
-                <!-- Formspree 連携済みフォーム -->
-                <form action="https://formspree.io/f/mbdvgeyl" method="POST">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name="name" placeholder="お名前" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" placeholder="メールアドレス" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea name="message" rows="5" placeholder="お問い合わせ内容" required></textarea>
-                    </div>
-                    <button type="submit">送信する</button>
-                </form>
-
-                <div class="sns-links">
-                    <!-- Instagram -->
-                    <a href="https://www.instagram.com/citric_acid289/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    
-                    <!-- X (Twitter) -->
-                    <a href="https://x.com/あなたのユーザー名" target="_blank"><i class="fab fa-x-twitter"></i></a>
-    
-                    <!-- GitHub -->
-                    <a href="https://github.com/moritokiya0822-tech" target="_blank"><i class="fab fa-github"></i></a>
-                    <!-- <a href="#"><i class="fab fa-linkedin"></i></a> -->
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 KOMOREBILab Portfolio Collection. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        // --- Header Scroll Effect ---
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // --- Smooth Scroll ---
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if(target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // --- Reveal on Scroll Animation ---
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        revealElements.forEach(el => revealObserver.observe(el));
-    </script>
-</body>
-</html>
+        <!-- Contact Section

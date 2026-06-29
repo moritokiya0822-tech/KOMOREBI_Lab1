@@ -12,9 +12,9 @@
     <style>
         /* --- CSS Reset & Variables --- */
         :root {
-            --primary-color: #2d5a27; /* 深い森の緑 */
-            --accent-color: #81c784;  /* 若葉の緑 */
-            --bg-light: #f9fbf9;      /* 清潔感のある白 */
+            --primary-color: #2d5a27;
+            --accent-color: #81c784;
+            --bg-light: #f9fbf9;
             --text-main: #333333;
             --text-sub: #666666;
             --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -58,11 +58,21 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .logo {
+        /* ロゴ周りのスタイル */
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 12px; /* ロゴと文字の間隔 */
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-color);
             letter-spacing: 2px;
+        }
+
+        .logo img {
+            height: 32px; /* ロゴの高さ */
+            width: auto;
+            object-fit: contain;
         }
 
         nav ul { display: flex; gap: 30px; }
@@ -164,7 +174,6 @@
             transition: var(--transition);
             border: 1px solid #eee;
             text-align: left;
-            /* リンクを下に固定するための設定 */
             display: flex;
             flex-direction: column;
         }
@@ -195,12 +204,11 @@
             font-size: 0.95rem;
             border-top: 1px solid #f0f0f0;
             padding-top: 20px;
-            margin-bottom: 20px; /* ボタンとの間隔 */
+            margin-bottom: 20px;
         }
 
-        /* 個人ページへのリンクボタン */
         .profile-link {
-            margin-top: auto; /* 説明が短くてもボタンが下に来るようにする */
+            margin-top: auto;
             color: var(--primary-color);
             font-weight: 700;
             font-size: 0.9rem;
@@ -209,7 +217,7 @@
         }
         .profile-link:hover {
             color: var(--accent-color);
-            padding-left: 5px; /* ホバー時に少し右に動かす */
+            padding-left: 5px;
         }
 
         /* --- Portfolio Section --- */
@@ -310,7 +318,6 @@
             .hero-content h1 { font-size: 2.5rem; }
         }
 
-        /* Scroll Animation Class */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -325,7 +332,13 @@
 <body>
 
     <header id="header">
-        <div class="logo">KOMOREBILab</div>
+        <div class="logo">
+            <a href="#home">
+                <!-- ここにロゴ画像ファイルを指定してください -->
+                <img src="logo.png" alt="Logo">
+                <span>KOMOREBILab</span>
+            </a>
+        </div>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -352,7 +365,6 @@
                 <h2>Our Members</h2>
             </div>
             <div class="member-grid">
-                <!-- Member 1: Tokiya -->
                 <div class="member-card">
                     <div class="member-info">
                         <h3>Tokiya Mori</h3>
@@ -368,7 +380,6 @@
                     <a href="tokiya.html" class="profile-link">View Profile →</a>
                 </div>
 
-                <!-- Member 2: Yugo -->
                 <div class="member-card">    
                     <div class="member-info">
                         <h3>Yugo Nakahama</h3>
@@ -384,10 +395,9 @@
                     <a href="yugo.html" class="profile-link">View Profile →</a>
                 </div>
 
-                <!-- Member 3: Wakana -->
                 <div class="member-card">
                     <div class="member-info">
-                        <h3>Wakana Kobayashi</h3>
+                        <h3>Kobayasi Wakana</h3>
                         <span class="role">UI/UX Designer</span>
                         <div class="member-details">
                             <p><i class="far fa-calendar-alt"></i> 2007.10.17</p>
@@ -400,7 +410,6 @@
                     <a href="wakana.html" class="profile-link">View Profile →</a>
                 </div>
 
-                <!-- Member 4: Mikuru -->
                 <div class="member-card">
                     <div class="member-info">
                         <h3>Mikuru Kusakari</h3>
@@ -418,7 +427,7 @@
             </div>
         </section>
 
-        <!-- Portfolio Section -->
+        <!-- Portfolios Section -->
         <section id="portfolio" class="reveal">
             <div class="section-title">
                 <h2>Portfolios</h2>
@@ -484,7 +493,6 @@
     </footer>
 
     <script>
-        // --- Header Scroll Effect ---
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
             if (window.scrollY > 50) {
@@ -494,7 +502,6 @@
             }
         });
 
-        // --- Smooth Scroll ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -507,7 +514,6 @@
             });
         });
 
-        // --- Reveal on Scroll Animation ---
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

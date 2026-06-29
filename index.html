@@ -144,14 +144,12 @@
         /* --- Members Section --- */
         .member-grid {
             display: grid;
-            /* 常に2列にする設定（PC・タブレット） */
             grid-template-columns: repeat(2, 1fr); 
             gap: 40px;
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        /* スマホなど画面が極端に狭いときは1列にする */
         @media (max-width: 700px) {
             .member-grid {
                 grid-template-columns: 1fr;
@@ -166,6 +164,9 @@
             transition: var(--transition);
             border: 1px solid #eee;
             text-align: left;
+            /* リンクを下に固定するための設定 */
+            display: flex;
+            flex-direction: column;
         }
 
         .member-card:hover {
@@ -194,6 +195,21 @@
             font-size: 0.95rem;
             border-top: 1px solid #f0f0f0;
             padding-top: 20px;
+            margin-bottom: 20px; /* ボタンとの間隔 */
+        }
+
+        /* 個人ページへのリンクボタン */
+        .profile-link {
+            margin-top: auto; /* 説明が短くてもボタンが下に来るようにする */
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        .profile-link:hover {
+            color: var(--accent-color);
+            padding-left: 5px; /* ホバー時に少し右に動かす */
         }
 
         /* --- Portfolio Section --- */
@@ -314,7 +330,7 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#members">Members</a></li>
-                <li><a href="#portfolio">Works</a></li>
+                <li><a href="#portfolio">Portfolios</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -326,7 +342,7 @@
             <div class="hero-content">
                 <h1>Light, Design,<br>and Future.</h1>
                 <p>私たちは、木漏れ日のように心地よいデジタル体験をデザインするクリエイティブチームです。</p>
-                <a href="#portfolio" style="color: var(--primary-color); font-weight: 700; border-bottom: 2px solid;">View Our Works →</a>
+                <a href="#portfolio" style="color: var(--primary-color); font-weight: 700; border-bottom: 2px solid;">View Our Portfolios →</a>
             </div>
         </section>
 
@@ -336,64 +352,68 @@
                 <h2>Our Members</h2>
             </div>
             <div class="member-grid">
-                <!-- Member 1 -->
+                <!-- Member 1: Tokiya -->
                 <div class="member-card">
                     <div class="member-info">
                         <h3>Tokiya Mori</h3>
                         <span class="role">Director / programmer</span>
                         <div class="member-details">
                             <p><i class="far fa-calendar-alt"></i> 2007.08.22</p>
-                            <p>人とのコミュニケーションが得意なリーダー。ゲーム制作,アプリシステム開発からWebサイト制作まで幅広い分野に対応できます。</p>
+                            <p>人とのコミュニケーションが得意なリーダー。ゲーム制作からWebサイト制作まで幅広く対応。</p>
                         </div>
                         <div class="member-pr">
-                            <strong>Strength:</strong> 徹底したヒアリング力と、ブランドの世界観を可視化するコンセプト設計力。
+                            <strong>Strength:</strong> 徹底したヒアリング力とコンセプト設計力。
                         </div>
                     </div>
+                    <a href="tokiya.html" class="profile-link">View Profile →</a>
                 </div>
 
-                <!-- Member 2 -->
+                <!-- Member 2: Yugo -->
                 <div class="member-card">    
                     <div class="member-info">
                         <h3>Yugo Nakahama</h3>
                         <span class="role">Frontend Developer</span>
                         <div class="member-details">
                             <p><i class="far fa-calendar-alt"></i> 2007.05.31</p>
-                            <p>エクセルを得意とする分析系プログラマー。ユーザーの無意識の行動を分析し、ストレスのないUI設計を得意としています。</p>
+                            <p>エクセルを得意とする分析系プログラマー。論理的なUI設計が得意。</p>
                         </div>
                         <div class="member-pr">
                             <strong>Strength:</strong> 競技プログラミングで鍛えた圧倒的な技術力。
                         </div>
                     </div>
+                    <a href="yugo.html" class="profile-link">View Profile →</a>
                 </div>
 
-                <!-- Member 3 -->
+                <!-- Member 3: Wakana -->
                 <div class="member-card">
                     <div class="member-info">
                         <h3>Kobayasi Wakana</h3>
                         <span class="role">UI/UX Designer</span>
                         <div class="member-details">
                             <p><i class="far fa-calendar-alt"></i> 2007.10.17</p>
-                            <p>ジャンルの域を超えたデザインを得意とするアートディレクター。ゲーム素材から似顔絵まで何でも描けます。</p>
+                            <p>ジャンルを超えたアートディレクター。ゲーム素材から似顔絵まで幅広く対応。</p>
                         </div>
                         <div class="member-pr">
-                            <strong>Strength:</strong> パフォーマンスを犠牲にしないリッチな表現力
+                            <strong>Strength:</strong> パフォーマンスを犠牲にしないリッチな表現力。
                         </div>
                     </div>
+                    <a href="wakana.html" class="profile-link">View Profile →</a>
                 </div>
 
-                <!-- Member 4 -->
+                <!-- Member 4: Mikuru -->
                 <div class="member-card">
                     <div class="member-info">
                         <h3>Mikuru Kusakari</h3>
                         <span class="role">UI/UX Designer</span>
                         <div class="member-details">
                             <p><i class="far fa-calendar-alt"></i> 2007.10.28</p>
-                            <p>人間を描くのを得意とするデザイナー。ゲーム素材の制作を得意としています。</p>
+                            <p>人間を描くのが得意なデザイナー。キャラクター制作への情熱は随一。</p>
                         </div>
                         <div class="member-pr">
                             <strong>Strength:</strong> 可愛いイラストが大好き。幅広い年代に受ける表現力。
                         </div>
                     </div>
+                    <a href="mikuru.html" class="profile-link">View Profile →</a>
                 </div>
             </div>
         </section>
@@ -401,28 +421,28 @@
         <!-- Portfolio Section -->
         <section id="portfolio" class="reveal">
             <div class="section-title">
-                <h2>Works</h2>
+                <h2>Portfolios</h2>
             </div>
             <div class="portfolio-grid">
                 <div class="work-item">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Work 1">
+                    <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=600&q=80" alt="Work 1">
                     <div class="work-overlay">
-                        <h3>Eco-Friendly E-commerce</h3>
-                        <p>自然素材に特化したECサイトの制作</p>
+                        <h3>Web Design Project</h3>
+                        <p>コーポレートサイトのリニューアル</p>
                     </div>
                 </div>
                 <div class="work-item">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Work 2">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Work 2">
                     <div class="work-overlay">
-                        <h3>Tech Startup Branding</h3>
-                        <p>ITスタートアップの企業サイト及びロゴデザイン</p>
+                        <h3>App Development</h3>
+                        <p>教育系アプリケーションのUI/UX設計</p>
                     </div>
                 </div>
                 <div class="work-item">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Work 3">
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="Work 3">
                     <div class="work-overlay">
-                        <h3>Minimal Architecture</h3>
-                        <p>建築事務所のポートフォリオサイト</p>
+                        <h3>Branding Design</h3>
+                        <p>ロゴデザインおよびブランドガイドラインの作成</p>
                     </div>
                 </div>
             </div>
@@ -434,7 +454,6 @@
                 <h2>Contact</h2>
             </div>
             <div class="contact-container">
-                <!-- Formspree 連携済みフォーム -->
                 <form action="https://formspree.io/f/mbdvgeyl" method="POST">
                     <div class="form-group">
                         <label>Name</label>
@@ -452,15 +471,9 @@
                 </form>
 
                 <div class="sns-links">
-                    <!-- Instagram -->
                     <a href="https://www.instagram.com/citric_acid289/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    
-                    <!-- X (Twitter) -->
-                    <a href="https://x.com/あなたのユーザー名" target="_blank"><i class="fab fa-x-twitter"></i></a>
-    
-                    <!-- GitHub -->
+                    <a href="https://x.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
                     <a href="https://github.com/moritokiya0822-tech" target="_blank"><i class="fab fa-github"></i></a>
-                    <!-- <a href="#"><i class="fab fa-linkedin"></i></a> -->
                 </div>
             </div>
         </section>

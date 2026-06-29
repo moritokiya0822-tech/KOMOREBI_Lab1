@@ -1,57 +1,152 @@
-<!-- (中身をWakanaさん用に変更) -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kobayasi Wakana | KOMOREBILab</title>
-    <!-- (TokiyaのCSSを流用) -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Mikuru Kusakari | Student Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary: #2d5a27; --accent: #81c784; --bg: #f9fbf9; --text: #333; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+        
         header { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .back-btn { color: var(--primary); font-weight: 700; text-decoration: none; }
-        .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
-        .profile-header { text-align: center; margin-bottom: 50px; }
-        .profile-header h1 { font-size: 2.5rem; color: var(--primary); }
-        .role { color: var(--accent); font-weight: 700; font-size: 1.1rem; }
-        .profile-content { background: #fff; padding: 40px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
-        .bio-section { margin-bottom: 40px; }
-        .bio-section h2 { border-left: 5px solid var(--accent); padding-left: 15px; margin-bottom: 20px; color: var(--primary); }
-        .skill-bar { margin-bottom: 15px; }
-        .skill-name { display: flex; justify-content: space-between; font-weight: 500; }
-        .bar-bg { background: #eee; height: 10px; border-radius: 5px; margin-top: 5px; }
-        .bar-fill { background: var(--accent); height: 100%; border-radius: 5px; width: 0; transition: width 1.5s ease-out; }
-        footer { text-align: center; padding: 40px; font-size: 0.9rem; color: #888; }
+        .back-btn { color: var(--primary); font-weight: 700; text-decoration: none; border: 1px solid var(--primary); padding: 5px 15px; border-radius: 20px; transition: 0.3s; font-size: 0.9rem; }
+        .back-btn:hover { background: var(--primary); color: #fff; }
+        
+        .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
+        
+        /* Hero Section */
+        .profile-hero { text-align: center; margin-bottom: 80px; }
+        .profile-hero h1 { font-size: clamp(2rem, 8vw, 3rem); color: var(--primary); margin-bottom: 10px; }
+        .role { color: var(--accent); font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; display: block; margin-bottom: 15px; }
+        .intro-text { max-width: 600px; margin: 0 auto; color: #666; }
+
+        /* Section Title Style */
+        .section-title { font-size: 1.6rem; color: var(--primary); margin: 60px 0 30px; display: flex; align-items: center; }
+        .section-title::after { content: ''; flex-grow: 1; height: 1px; background: #ddd; margin-left: 20px; }
+
+        /* Skills & Software Grid */
+        .skills-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        @media (max-width: 768px) { .skills-container { grid-template-columns: 1fr; } }
+
+        .skill-box h3 { font-size: 1.1rem; margin-bottom: 20px; color: var(--primary); }
+        
+        /* Software Tags */
+        .software-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .sw-tag { background: #fff; border: 1px solid #ddd; padding: 8px 15px; border-radius: 8px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .sw-tag i { color: var(--accent); }
+
+        /* Learning List */
+        .learning-list { list-style: none; }
+        .learning-item { margin-bottom: 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
+        .learning-item::before { content: '●'; color: var(--accent); font-size: 0.8rem; }
+
+        /* Portfolio Grid Style */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .work-card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; }
+        .work-card:hover { transform: translateY(-10px); }
+        .work-img { width: 100%; aspect-ratio: 16/9; background: #eee; object-fit: cover; }
+        .work-info { padding: 20px; }
+        .work-info h3 { color: var(--primary); margin-bottom: 8px; font-size: 1.2rem; }
+        .work-info p { font-size: 0.85rem; color: #666; }
+
+        /* Contact Section */
+        .contact-area { background: #fff; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .contact-area p { margin-bottom: 20px; color: #666; }
+        .contact-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .c-btn { text-decoration: none; padding: 12px 25px; border-radius: 30px; font-weight: 700; font-size: 0.9rem; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
+        .btn-mail { background: var(--primary); color: #fff; }
+        .btn-sns { background: #f0f0f0; color: var(--text); }
+        .c-btn:hover { opacity: 0.8; transform: scale(1.05); }
+
+        footer { text-align: center; padding: 60px; color: #aaa; font-size: 0.8rem; }
     </style>
 </head>
 <body>
+
     <header>
         <div class="logo" style="color:var(--primary); font-weight:700;">KOMOREBILab</div>
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        <a href="index.html" class="back-btn">← Back to Home</a>
     </header>
+
     <div class="container">
-        <div class="profile-header">
-            <h1>Kobayasi Wakana</h1>
-            <p class="role">UI/UX Designer</p>
-            <p><i class="far fa-calendar-alt"></i> 2007.10.17</p>
+        <!-- Hero -->
+        <div class="profile-hero">
+            <span class="role">University Student / Director</span>
+            <h1>Tokiya Mori</h1>
+            <p class="intro-text">現在、情報デザインを専攻している大学生です。プログラミングとディレクションの視点から、新しいデジタル体験の形を模索しています。</p>
         </div>
-        <div class="profile-content">
-            <section class="bio-section">
-                <h2>自己紹介</h2>
-                <p>ジャンルの境界を越えるアートディレクターです。ゲームのUI素材から、ぬくもりのある似顔絵制作まで、デジタルの冷たさを感じさせないデザインを提供します。見る人の心に深く残る色彩設計を得意としています。</p>
-            </section>
-            <section class="bio-section">
-                <h2>スキル</h2>
-                <div class="skill-bar"><div class="skill-name"><span>Illustration</span><span>98%</span></div><div class="bar-bg"><div class="bar-fill" style="width: 98%;"></div></div></div>
-                <div class="skill-bar"><div class="skill-name"><span>Graphic Design</span><span>92%</span></div><div class="bar-bg"><div class="bar-fill" style="width: 92%;"></div></div></div>
-                <div class="skill-bar"><div class="skill-name"><span>UI Design</span><span>85%</span></div><div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div></div>
-            </section>
+
+        <!-- Skills & Software -->
+        <div class="skills-container">
+            <!-- 得意なソフト -->
+            <div class="skill-box">
+                <h2 class="section-title">Proficient Software</h2>
+                <div class="software-list">
+                    <div class="sw-tag"><i class="fas fa-code"></i> VS Code</div>
+                    <div class="sw-tag"><i class="fab fa-unity"></i> Blender</div>
+                </div>
+            </div>
+            <!-- 学習中のスキル -->
+            <div class="skill-box">
+                <h2 class="section-title">Now Learning</h2>
+                <ul class="learning-list">
+                    <li class="learning-item">カニクリームコロッケの作り方</li>
+                    <li class="learning-item">カレーコロッケの作り方</li>
+                    <li class="learning-item">チーズコロッケの作り方</li>
+                    <li class="learning-item">コーンクリームコロッケの作り方</li>
+                </ul>
+            </div>
         </div>
+
+        <!-- Personal Portfolio -->
+        <h2 class="section-title">Personal Portfolios</h2>
+        <div class="portfolio-grid">
+            <div class="work-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" class="work-img">
+                <div class="work-info">
+                    <h3>Project Dashboard</h3>
+                    <p>学生チーム向けのタスク管理UI。使いやすさを重視した設計。</p>
+                </div>
+            </div>
+            <div class="work-card">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600" class="work-img">
+                <div class="work-info">
+                    <h3>Visual Code Pad</h3>
+                    <p>コードの視覚化をテーマにした実験的なWebサイト。</p>
+                </div>
+            </div>
+            <div class="work-card">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600" class="work-img">
+                <div class="work-info">
+                    <h3>KOMOREBI Base</h3>
+                    <p>本ポートフォリオサイトの基盤となるシステム構成を担当。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <h2 class="section-title">Personal Contact</h2>
+        <div class="contact-area">
+            <p>作品の制作依頼や、お話ししてみたい方は以下の連絡先からお気軽にお願いします！</p>
+            <div class="contact-links">
+                <a href="mailto:your-email@example.com" class="c-btn btn-mail">
+                    <i class="far fa-envelope"></i> Email Me
+                </a>
+                <a href="https://instagram.com/your-username" target="_blank" class="c-btn btn-sns">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://github.com/your-username" target="_blank" class="c-btn btn-sns">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+
     </div>
-    <footer>&copy; 2024 KOMOREBILab - Kobayasi Wakana</footer>
+
+    <footer>&copy; 2024 KOMOREBILab - Tokiya Mori</footer>
+
 </body>
 </html>
